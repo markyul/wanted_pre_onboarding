@@ -9,17 +9,17 @@
 	/components
         /toggle
             Toggle.css
-		    Toggle.js
+	    Toggle.js
         /tab
             Tab.css
-		    Tab.js
+	    Tab.js
         /slider
             Slider.css
-		    Slider.js
+	    Slider.js
         /input
             Input.css
-		    Input.js
+	    Input.js
         /dropdown
             Dropdown.css
-		    Dropdown.js
+	    Dropdown.js
 ```
