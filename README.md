@@ -6,6 +6,7 @@
 /src
 	App.js
 	App.css
+	/
 	/components
 		/toggle
 		    Toggle.css
