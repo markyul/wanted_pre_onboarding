@@ -11,38 +11,49 @@ const Tab = () => {
 
   const [tabIndex, setTabIndex] = useState(0);
 
-  const handleTab = (index) => {
-    setTabIndex(index);
-  };
-
   return (
     <div className='container'>
       <h1>TAB</h1>
+      <Tabs list={tabs} idx={tabIndex} onTabPress={(v) => setTabIndex(v)} />
+      <Content list={tabs} idx={tabIndex} />
+    </div>
+  );
+};
 
-      <nav className='tab-container'>
-        <ul className='tabs'>
-          {tabs.map((tab, idx) => {
-            return (
-              <li
-                className={tabIndex == idx ? 'tab-active' : 'tab-inactive'}
-                onClick={() => {
-                  handleTab(idx);
-                }}
-                key={idx}
-              >
-                {tab.title}
-              </li>
-            );
-          })}
-        </ul>
-        <div
-          className='tab-slider'
-          style={{ transform: `translateX(${tabIndex * 150}px)` }}
-        />
-      </nav>
-      <div className='tab-content-container'>
-        <div className='tab-content'>{tabs[tabIndex].content}</div>
-      </div>
+const Tabs = ({ ...props }) => {
+  const handleTab = (index) => {
+    props.onTabPress(index);
+  };
+
+  const tabList = props.list.map((tab, idx) => {
+    return (
+      <li
+        className={props.idx == idx ? 'tab-active' : 'tab-inactive'}
+        onClick={() => {
+          handleTab(idx);
+        }}
+        key={idx}
+      >
+        {tab.title}
+      </li>
+    );
+  });
+
+  return (
+    <nav className='tab-container'>
+      <ul className='tabs'>{tabList}</ul>
+      <div
+        className='tab-slider'
+        style={{ transform: `translateX(${props.idx * 150}px)` }}
+      />
+    </nav>
+  );
+};
+
+const Content = ({ ...props }) => {
+  return (
+    <div className='tab-content-container'>
+      <div className='tab-content'>{props.list[props.idx].content}</div>
     </div>
   );
 };
