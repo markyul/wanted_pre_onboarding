@@ -9,8 +9,8 @@ import pwHiddenIcon from '../../asset/pw_hidden.png';
 const Input = () => {
   return (
     <div className='container'>
-      <section className='content-container'>
-        <h1 className='content-title'>LOGIN</h1>
+      <h1>LOGIN</h1>
+      <section className='input-container'>
         <InputID />
         <InputPW />
       </section>
@@ -41,9 +41,9 @@ const InputID = () => {
   };
 
   return (
-    <>
+    <section className='input-box'>
       <div className='input-title'>E-mail</div>
-      <div className='input-container'>
+      <div className='id-input-box'>
         <input
           className='input'
           placeholder='E-mail'
@@ -60,7 +60,7 @@ const InputID = () => {
       {!ID || nowIsValidID ? null : (
         <div className='err-messege'>Invalid e-mail address</div>
       )}
-    </>
+    </section>
   );
 };
 
@@ -78,9 +78,9 @@ const InputPW = () => {
   };
 
   return (
-    <>
+    <section className='input-box'>
       <div className='input-title'>Password</div>
-      <div className='input-container'>
+      <div className='pw-input-box'>
         <input
           className='input'
           placeholder='Password'
@@ -95,7 +95,7 @@ const InputPW = () => {
           onClick={handlePwIcon}
         />
       </div>
-    </>
+    </section>
   );
 };
 

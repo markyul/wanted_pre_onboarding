@@ -1,18 +1,27 @@
 .input-container {
-  display: flex;
+  display: inline-block;
+  text-align: center;
+}
+
+.input-box {
   width: 250px;
+}
+
+.id-input-box,
+.pw-input-box {
+  display: flex;
   height: 30px;
   padding-left: 10px;
   padding-right: 10px;
   border: 1px solid black;
   border-radius: 5px;
-  text-align: left;
   align-items: center;
 }
 
 .input-title {
   padding-left: 10px;
   font-size: 12px;
+  text-align: left;
 }
 
 .input {
@@ -37,4 +46,5 @@
   padding-left: 5px;
   font-size: 10px;
   color: red;
+  text-align: left;
 }
