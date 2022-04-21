@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import './Input.css';
+import Container from '../common/Container';
 import validCheckBlack from '../../asset/check_black.png';
 import validCheckColor from '../../asset/check_color.png';
 import pwViewIcon from '../../asset/pw_view.png';
@@ -8,13 +9,12 @@ import pwHiddenIcon from '../../asset/pw_hidden.png';
 
 const Input = () => {
   return (
-    <div className='container'>
-      <h1>INPUT</h1>
+    <Container title='INPUT'>
       <section className='input-container'>
         <InputID />
         <InputPW />
       </section>
-    </div>
+    </Container>
   );
 };
 

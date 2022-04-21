@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import './Tab.css';
+import Container from '../common/Container';
 
 const Tab = () => {
   const tabs = [
@@ -12,11 +13,10 @@ const Tab = () => {
   const [tabIndex, setTabIndex] = useState(0);
 
   return (
-    <div className='container'>
-      <h1>TAB</h1>
+    <Container title='TAB'>
       <Tabs list={tabs} idx={tabIndex} onTabPress={(v) => setTabIndex(v)} />
       <Content list={tabs} idx={tabIndex} />
-    </div>
+    </Container>
   );
 };
 
