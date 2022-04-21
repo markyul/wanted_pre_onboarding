@@ -30,7 +30,7 @@
 .tab-slider {
   width: 150px;
   border-bottom: 2px solid teal;
-  transition: all 0.5s;
+  transition: all 0.2s;
 }
 
 .tab-content-container {
