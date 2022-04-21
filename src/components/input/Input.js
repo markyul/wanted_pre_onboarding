@@ -9,7 +9,7 @@ import pwHiddenIcon from '../../asset/pw_hidden.png';
 const Input = () => {
   return (
     <div className='container'>
-      <h1>LOGIN</h1>
+      <h1>INPUT</h1>
       <section className='input-container'>
         <InputID />
         <InputPW />
