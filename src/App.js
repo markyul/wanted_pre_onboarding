@@ -3,6 +3,7 @@ import './App.css';
 import Input from './components/input/Input';
 import Tab from './components/tab/Tab';
 import Toggle from './components/toggle/Toggle';
+import Slider from './components/slider/Slider';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Input />
       <Tab />
       <Toggle />
+      <Slider />
     </div>
   );
 }
