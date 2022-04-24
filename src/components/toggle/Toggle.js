@@ -27,7 +27,7 @@ const ToggleBtn = ({ list, toggleIndex, onPress }) => {
   const toggleList = list.map((toggle, idx) => {
     return (
       <li
-        className={toggleIndex == idx ? 'toggle-active' : 'toggle-inactive'}
+        className={toggleIndex === idx ? 'toggle-active' : 'toggle-inactive'}
         onClick={() => {
           onPress(idx);
         }}

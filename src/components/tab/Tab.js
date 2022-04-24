@@ -24,7 +24,7 @@ const Tabs = ({ list, tabIndex, onPress }) => {
   const tabList = list.map((tab, idx) => {
     return (
       <li
-        className={tabIndex == idx ? 'tab-active' : 'tab-inactive'}
+        className={tabIndex === idx ? 'tab-active' : 'tab-inactive'}
         onClick={() => {
           onPress(idx);
         }}
