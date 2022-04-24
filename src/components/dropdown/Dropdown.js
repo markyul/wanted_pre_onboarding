@@ -52,10 +52,6 @@ const Dropdown = () => {
     viewItems();
   }, [viewItems]);
 
-  const handleDropdown = () => {
-    setOpen(!open);
-  };
-
   const handleClickItem = (key) => {
     setItem(items[key].item);
     setOpen(false);
@@ -69,31 +65,57 @@ const Dropdown = () => {
   return (
     <Container title='DROPDOWN'>
       <div className='dropdown-container'>
-        <div className='dropdown-btn' onClick={handleDropdown}>
-          <div className='dropdown-text'>{item}</div>
-          <div className='dropdown-arrow'>▼</div>
-        </div>
-        {open ? (
-          <div className='dropdown-items-container'>
-            <div className='dropdown-search'>
-              <img
-                src={searchIcon}
-                className='dropdown-search-icon'
-                alt='search_icon'
-              />
-              <input
-                placeholder='Search'
-                className='dropdown-search-input'
-                value={searchText}
-                onChange={onChangeText}
-              />
-            </div>
-            {dropdownItemList}
-          </div>
-        ) : null}
+        <DropdownBtn
+          item={item}
+          open={open}
+          setOpen={setOpen}
+          setSearchText={setSearchText}
+        />
+        {open && (
+          <DropdownItems
+            searchText={searchText}
+            onChangeText={onChangeText}
+            list={dropdownItemList}
+          />
+        )}
       </div>
       <div className='blank-container'>빈공간</div>
     </Container>
+  );
+};
+
+const DropdownBtn = ({ item, open, setOpen, setSearchText }) => {
+  const handleDropdown = () => {
+    setOpen(!open);
+    setSearchText('');
+  };
+
+  return (
+    <div className='dropdown-btn' onClick={handleDropdown}>
+      <div className='dropdown-text'>{item}</div>
+      <div className='dropdown-arrow'>▼</div>
+    </div>
+  );
+};
+
+const DropdownItems = ({ searchText, onChangeText, list }) => {
+  return (
+    <div className='dropdown-items-container'>
+      <div className='dropdown-search'>
+        <img
+          src={searchIcon}
+          className='dropdown-search-icon'
+          alt='search_icon'
+        />
+        <input
+          placeholder='Search'
+          className='dropdown-search-input'
+          value={searchText}
+          onChange={onChangeText}
+        />
+      </div>
+      {list}
+    </div>
   );
 };
 
