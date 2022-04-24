@@ -14,23 +14,19 @@ const Tab = () => {
 
   return (
     <Container title='TAB'>
-      <Tabs list={tabs} tabIndex={tabIndex} onPress={(v) => setTabIndex(v)} />
+      <Tabs list={tabs} tabIndex={tabIndex} onPress={setTabIndex} />
       <Content list={tabs} tabIndex={tabIndex} />
     </Container>
   );
 };
 
 const Tabs = ({ list, tabIndex, onPress }) => {
-  const handleTab = (idx) => {
-    onPress(idx);
-  };
-
   const tabList = list.map((tab, idx) => {
     return (
       <li
         className={tabIndex == idx ? 'tab-active' : 'tab-inactive'}
         onClick={() => {
-          handleTab(idx);
+          onPress(idx);
         }}
         key={idx}
       >

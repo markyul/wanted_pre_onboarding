@@ -9,10 +9,10 @@ import Dropdown from './components/dropdown/Dropdown';
 function App() {
   return (
     <div className='App'>
-      <Input />
-      <Tab />
       <Toggle />
+      <Tab />
       <Slider />
+      <Input />
       <Dropdown />
     </div>
   );

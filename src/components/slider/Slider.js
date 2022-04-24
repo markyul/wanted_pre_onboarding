@@ -10,7 +10,7 @@ const Slider = () => {
     <Container title='SLIDER'>
       <div className='slider-container'>
         <Panel value={sliderValue} />
-        <SlideBar value={sliderValue} onChange={(v) => setSliderValue(v)} />
+        <SlideBar value={sliderValue} onChange={setSliderValue} />
       </div>
     </Container>
   );
@@ -32,15 +32,8 @@ const SlideBar = ({ value, onChange }) => {
     onChange(e.target.value);
   };
 
-  const valueBtns = values.map((v) => {
-    return (
-      <ValueBtn
-        value={v}
-        onPress={(v) => {
-          onChange(v);
-        }}
-      />
-    );
+  const valueBtns = values.map((v, idx) => {
+    return <ValueBtn key={idx} value={v} onPress={onChange} />;
   });
 
   return (

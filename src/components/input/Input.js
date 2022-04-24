@@ -28,6 +28,10 @@ const InputID = () => {
     setValidID(getValid(ID, 'id'));
   }, [ID]);
 
+  useEffect(() => {
+    isValidID && setNowValidID(true);
+  }, [isValidID]);
+
   const onChangeID = (e) => {
     setID(e.target.value);
   };
@@ -57,7 +61,7 @@ const InputID = () => {
           alt='check'
         />
       </div>
-      {!ID || nowIsValidID ? null : (
+      {ID && !nowIsValidID && (
         <div className='err-messege'>Invalid e-mail address</div>
       )}
     </section>
@@ -74,7 +78,7 @@ const InputPW = () => {
   };
 
   const handlePwIcon = () => {
-    pwView ? setPwView(false) : setPwView(true);
+    setPwView(!pwView);
   };
 
   return (
@@ -84,7 +88,7 @@ const InputPW = () => {
         <input
           className='input'
           placeholder='Password'
-          type={pwView ? '' : 'password'}
+          type={!pwView && 'password'}
           value={PW}
           onChange={onChangePW}
         />

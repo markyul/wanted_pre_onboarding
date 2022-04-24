@@ -16,7 +16,7 @@ const Toggle = () => {
       <ToggleBtn
         list={toggles}
         toggleIndex={toggleIndex}
-        onPress={(v) => setToggleIndex(v)}
+        onPress={setToggleIndex}
       />
       <Content list={toggles} toggleIndex={toggleIndex} />
     </Container>
@@ -24,16 +24,12 @@ const Toggle = () => {
 };
 
 const ToggleBtn = ({ list, toggleIndex, onPress }) => {
-  const handleToggle = (idx) => {
-    onPress(idx);
-  };
-
   const toggleList = list.map((toggle, idx) => {
     return (
       <li
         className={toggleIndex == idx ? 'toggle-active' : 'toggle-inactive'}
         onClick={() => {
-          handleToggle(idx);
+          onPress(idx);
         }}
         key={idx}
       >
