@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react'
 
-import './Slider.css';
-import Container from '../common/Container';
+import './Slider.css'
+import Container from '../common/Container'
 
-const Slider = () => {
-  const [sliderValue, setSliderValue] = useState(0);
+function Slider() {
+  const [sliderValue, setSliderValue] = useState(0)
 
   return (
     <Container title='SLIDER'>
@@ -13,58 +13,53 @@ const Slider = () => {
         <SlideBar value={sliderValue} onChange={setSliderValue} />
       </div>
     </Container>
-  );
-};
+  )
+}
 
-const Panel = ({ value }) => {
+function Panel({ value }) {
   return (
     <div className='panel-container'>
       <div className='panel-left-container'>{value}</div>
       <div className='panel-right-container'>%</div>
     </div>
-  );
-};
+  )
+}
 
-const SlideBar = ({ value, onChange }) => {
-  const values = [0, 25, 50, 75, 100];
+function SlideBar({ value, onChange }) {
+  const values = [0, 25, 50, 75, 100]
 
   const handleChange = (e) => {
-    onChange(e.target.value);
-  };
+    onChange(e.target.value)
+  }
 
   const valueBtns = values.map((v, idx) => {
-    return <ValueBtn key={idx} value={v} onPress={onChange} />;
-  });
+    return <ValueBtn key={idx} value={v} onPress={onChange} />
+  })
 
   return (
     <div className='slide-bar-container'>
-      <input
-        className='range-slider'
-        type='range'
-        min='0'
-        max='100'
-        value={value}
-        onChange={handleChange}
-      />
+      <input className='range-slider' type='range' min='0' max='100' value={value} onChange={handleChange} />
       <div className='slider-btn-container'>{valueBtns}</div>
     </div>
-  );
-};
+  )
+}
 
-const ValueBtn = ({ value, onPress }) => {
+function ValueBtn({ value, onPress }) {
   const handleClick = (v) => {
-    onPress(v);
-  };
+    onPress(v)
+  }
   return (
     <div
       className='slider-btn'
       onClick={() => {
-        handleClick(value);
+        handleClick(value)
       }}
+      // 일단 해놓음
+      role='presentation'
     >
       {value}%
     </div>
-  );
-};
+  )
+}
 
-export default Slider;
+export default Slider

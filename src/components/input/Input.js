@@ -1,13 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 
-import './Input.css';
-import Container from '../common/Container';
-import validCheckBlack from '../../asset/check_black.png';
-import validCheckColor from '../../asset/check_color.png';
-import pwViewIcon from '../../asset/pw_view.png';
-import pwHiddenIcon from '../../asset/pw_hidden.png';
+import './Input.css'
+import Container from '../common/Container'
+import validCheckBlack from '../../asset/check_black.png'
+import validCheckColor from '../../asset/check_color.png'
+import pwViewIcon from '../../asset/pw_view.png'
+import pwHiddenIcon from '../../asset/pw_hidden.png'
 
-const Input = () => {
+const regex = {
+  id: /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+}
+
+const getValid = (text, type) => {
+  return regex[type].test(text)
+}
+
+function Input() {
   return (
     <Container title='INPUT'>
       <section className='input-container'>
@@ -15,34 +23,34 @@ const Input = () => {
         <InputPW />
       </section>
     </Container>
-  );
-};
+  )
+}
 
-const InputID = () => {
-  const [ID, setID] = useState('');
+function InputID() {
+  const [ID, setID] = useState('')
 
-  const [isValidID, setValidID] = useState(false);
-  const [nowIsValidID, setNowValidID] = useState(true);
-
-  useEffect(() => {
-    setValidID(getValid(ID, 'id'));
-  }, [ID]);
+  const [isValidID, setValidID] = useState(false)
+  const [nowIsValidID, setNowValidID] = useState(true)
 
   useEffect(() => {
-    isValidID && setNowValidID(true);
-  }, [isValidID]);
+    setValidID(getValid(ID, 'id'))
+  }, [ID])
+
+  useEffect(() => {
+    isValidID && setNowValidID(true)
+  }, [isValidID])
 
   const onChangeID = (e) => {
-    setID(e.target.value);
-  };
+    setID(e.target.value)
+  }
 
   const handleBlur = (isValid) => {
     if (!ID || isValid) {
-      setNowValidID(true);
+      setNowValidID(true)
     } else {
-      setNowValidID(false);
+      setNowValidID(false)
     }
-  };
+  }
 
   return (
     <section className='input-box'>
@@ -55,60 +63,42 @@ const InputID = () => {
           onChange={onChangeID}
           onBlur={() => handleBlur(isValidID)}
         />
-        <img
-          src={isValidID ? validCheckColor : validCheckBlack}
-          className='input-icon'
-          alt='check'
-        />
+        <img src={isValidID ? validCheckColor : validCheckBlack} className='input-icon' alt='check' />
       </div>
-      {ID && !nowIsValidID && (
-        <div className='err-messege'>Invalid e-mail address</div>
-      )}
+      {ID && !nowIsValidID && <div className='err-messege'>Invalid e-mail address</div>}
     </section>
-  );
-};
+  )
+}
 
-const InputPW = () => {
-  const [PW, setPW] = useState('');
+function InputPW() {
+  const [PW, setPW] = useState('')
 
-  const [pwView, setPwView] = useState(false);
+  const [pwView, setPwView] = useState(false)
 
   const onChangePW = (e) => {
-    setPW(e.target.value);
-  };
+    setPW(e.target.value)
+  }
 
   const handlePwIcon = () => {
-    setPwView(!pwView);
-  };
+    setPwView(!pwView)
+  }
 
   return (
     <section className='input-box'>
       <div className='input-title'>Password</div>
       <div className='pw-input-box'>
-        <input
-          className='input'
-          placeholder='Password'
-          type={!pwView && 'password'}
-          value={PW}
-          onChange={onChangePW}
-        />
+        <input className='input' placeholder='Password' type={!pwView && 'password'} value={PW} onChange={onChangePW} />
         <img
           src={pwView ? pwViewIcon : pwHiddenIcon}
           className='password-icon'
           alt='check'
           onClick={handlePwIcon}
+          // 일단 해놓음
+          role='presentation'
         />
       </div>
     </section>
-  );
-};
+  )
+}
 
-const regex = {
-  id: /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-};
-
-const getValid = (text, type) => {
-  return regex[type].test(text);
-};
-
-export default Input;
+export default Input

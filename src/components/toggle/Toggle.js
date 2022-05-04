@@ -1,42 +1,40 @@
-import React, { useState } from 'react';
+import { useState } from 'react'
 
-import './Toggle.css';
-import Container from '../common/Container';
+import './Toggle.css'
+import Container from '../common/Container'
 
-const Toggle = () => {
+function Toggle() {
   const toggles = [
     { title: '기본', content: '김학률' },
     { title: '상세', content: '파릇파릇 신입 개발자!' },
-  ];
+  ]
 
-  const [toggleIndex, setToggleIndex] = useState(0);
+  const [toggleIndex, setToggleIndex] = useState(0)
 
   return (
     <Container title='TOGGLE'>
-      <ToggleBtn
-        list={toggles}
-        toggleIndex={toggleIndex}
-        onPress={setToggleIndex}
-      />
+      <ToggleBtn list={toggles} toggleIndex={toggleIndex} onPress={setToggleIndex} />
       <Content list={toggles} toggleIndex={toggleIndex} />
     </Container>
-  );
-};
+  )
+}
 
-const ToggleBtn = ({ list, toggleIndex, onPress }) => {
+function ToggleBtn({ list, toggleIndex, onPress }) {
   const toggleList = list.map((toggle, idx) => {
     return (
       <li
         className={toggleIndex === idx ? 'toggle-active' : 'toggle-inactive'}
         onClick={() => {
-          onPress(idx);
+          onPress(idx)
         }}
         key={idx}
+        // 일단 해놓음
+        role='presentation'
       >
         {toggle.title}
       </li>
-    );
-  });
+    )
+  })
 
   const activeStyle = (idx) => {
     return {
@@ -50,8 +48,8 @@ const ToggleBtn = ({ list, toggleIndex, onPress }) => {
       borderRadius: '30px',
       transform: `translateX(${idx * 150}px)`,
       transition: 'all 0.2s',
-    };
-  };
+    }
+  }
 
   return (
     <nav className='toggle-container'>
@@ -60,15 +58,15 @@ const ToggleBtn = ({ list, toggleIndex, onPress }) => {
         {toggleList}
       </ul>
     </nav>
-  );
-};
+  )
+}
 
-const Content = ({ list, toggleIndex }) => {
+function Content({ list, toggleIndex }) {
   return (
     <div className='toggle-content-container'>
       <div className='toggle-content'>{list[toggleIndex].content}</div>
     </div>
-  );
-};
+  )
+}
 
-export default Toggle;
+export default Toggle
