@@ -1,0 +1,48 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/mixins/flexbox';
+
+.toggleContainer {
+  position: relative;
+  display: inline-block;
+  min-width: 300px;
+}
+
+.toggle {
+  padding: 0;
+  margin: 0;
+  background-color: colors.$TOGGLE_BACKGROUND;
+  border: 2px solid colors.$TOGGLE_BACKGROUND;
+  border-radius: 30px;
+
+  li {
+    position: relative;
+    display: inline-block;
+    width: 150px;
+    font-weight: bold;
+    line-height: 40px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.toggleActive {
+  color: colors.$BLACK;
+}
+
+.toggleInactive {
+  color: colors.$GRAY6;
+}
+
+.toggleContentContainer {
+  @include flexbox.flexbox;
+  height: 300px;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+.toggleContent {
+  font-size: large;
+  font-weight: bold;
+}

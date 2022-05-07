@@ -1,0 +1,62 @@
+@use '/src/styles/constants/colors';
+
+@mixin inputIconSize {
+  width: 20px;
+  height: 20px;
+}
+
+.inputContainer {
+  display: inline-block;
+  text-align: center;
+
+  .inputBox {
+    width: 250px;
+
+    + .inputBox {
+      margin-top: 10px;
+    }
+
+    .inputTitle {
+      padding-left: 10px;
+      font-size: 12px;
+      text-align: left;
+    }
+
+    .idInputBox,
+    .pwInputBox {
+      display: flex;
+      align-items: center;
+      height: 30px;
+      padding-right: 10px;
+      padding-left: 10px;
+      border: 1px solid colors.$BLACK;
+      border-radius: 5px;
+
+      .input {
+        flex: 1;
+        font-weight: bold;
+        border: none;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      .idInputIcon,
+      .passwordIcon {
+        @include inputIconSize;
+
+        .passwordIcon:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .errMessege {
+      padding-left: 5px;
+      font-size: 10px;
+      color: colors.$RED;
+      text-align: left;
+    }
+  }
+}

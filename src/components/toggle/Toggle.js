@@ -1,6 +1,8 @@
 import { useState } from 'react'
 
-import './Toggle.css'
+import PropTypes, { string } from 'prop-types'
+
+import styles from './Toggle.module.scss'
 import Container from '../common/Container'
 
 function Toggle() {
@@ -13,22 +15,26 @@ function Toggle() {
 
   return (
     <Container title='TOGGLE'>
-      <ToggleBtn list={toggles} toggleIndex={toggleIndex} onPress={setToggleIndex} />
-      <Content list={toggles} toggleIndex={toggleIndex} />
+      <>
+        <ToggleBtn list={toggles} toggleIndex={toggleIndex} onPress={setToggleIndex} />
+        <Content list={toggles} toggleIndex={toggleIndex} />
+      </>
     </Container>
   )
 }
 
 function ToggleBtn({ list, toggleIndex, onPress }) {
   const toggleList = list.map((toggle, idx) => {
+    const key = `toggle-list-${idx}`
+    const toggleBtnStyle = toggleIndex === idx ? styles.toggleActive : styles.toggleInactive
+
     return (
       <li
-        className={toggleIndex === idx ? 'toggle-active' : 'toggle-inactive'}
+        className={toggleBtnStyle}
         onClick={() => {
           onPress(idx)
         }}
-        key={idx}
-        // 일단 해놓음
+        key={key}
         role='presentation'
       >
         {toggle.title}
@@ -52,8 +58,8 @@ function ToggleBtn({ list, toggleIndex, onPress }) {
   }
 
   return (
-    <nav className='toggle-container'>
-      <ul className='toggle'>
+    <nav className={styles.toggleContainer}>
+      <ul className={styles.toggle}>
         <div style={activeStyle(toggleIndex)} />
         {toggleList}
       </ul>
@@ -61,12 +67,23 @@ function ToggleBtn({ list, toggleIndex, onPress }) {
   )
 }
 
+ToggleBtn.propTypes = {
+  list: PropTypes.arrayOf(PropTypes.objectOf(string)),
+  toggleIndex: PropTypes.number,
+  onPress: PropTypes.func,
+}
+
 function Content({ list, toggleIndex }) {
   return (
-    <div className='toggle-content-container'>
-      <div className='toggle-content'>{list[toggleIndex].content}</div>
+    <div className={styles.toggleContentContainer}>
+      <div className={styles.toggleContent}>{list[toggleIndex].content}</div>
     </div>
   )
+}
+
+Content.propTypes = {
+  list: PropTypes.arrayOf(PropTypes.objectOf(string)),
+  toggleIndex: PropTypes.number,
 }
 
 export default Toggle

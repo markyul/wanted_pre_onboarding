@@ -1,0 +1,80 @@
+@use '/src/styles/constants/colors';
+
+.sliderContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  .panelContainer {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    width: 400px;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: colors.$SLIDER_BACKGROUND;
+    border: 2px solid colors.$GRAYA;
+    border-radius: 10px;
+
+    .panelLeftContainer {
+      flex: 5;
+      font-weight: bold;
+      text-align: right;
+    }
+
+    .panelRightContainer {
+      width: 40px;
+      font-size: small;
+    }
+  }
+}
+
+.slideBarContainer {
+  display: inline-block;
+  width: 500px;
+
+  .rangeSlider {
+    width: 97%;
+    height: 10px;
+    -webkit-appearance: none;
+    margin-bottom: 15px;
+    background-color: colors.$SLIDER_BACKGROUND;
+    border-radius: 20px;
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 25px;
+      height: 25px;
+      cursor: pointer;
+      background: colors.$SLIDER_BUTTON;
+      border-radius: 100%;
+
+      &:hover {
+        background: colors.$SLIDER_BUTTON_HOVER;
+      }
+    }
+  }
+
+  .sliderBtnContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    .sliderBtn {
+      width: 40px;
+      font-size: x-small;
+      line-height: 20px;
+      color: colors.$GRAY6;
+      background-color: colors.$SLIDER_BACKGROUND;
+      border-radius: 20px;
+
+      &:hover {
+        color: colors.$WHITE;
+        cursor: pointer;
+        background: colors.$SLIDER_BUTTON;
+      }
+    }
+  }
+}
