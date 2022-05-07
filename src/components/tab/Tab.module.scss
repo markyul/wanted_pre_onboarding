@@ -1,0 +1,49 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/mixins/flexbox';
+
+.tabContainer {
+  display: inline-block;
+  min-width: 450px;
+
+  .tabs {
+    padding: 0;
+    margin: 0;
+
+    li {
+      display: inline-block;
+      width: 150px;
+      font-weight: bold;
+      line-height: 50px;
+
+      &:hover {
+        cursor: pointer;
+        background-color: colors.$GRAYD;
+      }
+    }
+
+    .tabActive {
+      color: colors.$BLACK;
+      transition: color 0.5s;
+    }
+
+    .tabInactive {
+      color: colors.$GRAYA;
+    }
+  }
+
+  .tabSlider {
+    width: 150px;
+    border-bottom: 2px solid colors.$TAB_SLIDER;
+    transition: all 0.2s;
+  }
+}
+
+.tabContentContainer {
+  @include flexbox.flexbox;
+  height: 300px;
+
+  .tabContent {
+    font-size: large;
+    font-weight: bold;
+  }
+}

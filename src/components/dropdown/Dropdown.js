@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useState } from 'react'
 
-import './Dropdown.css'
+import PropTypes from 'prop-types'
+
+import styles from './Dropdown.module.scss'
 import Container from '../common/Container'
 import searchIcon from '../../asset/search_icon.png'
 
@@ -52,13 +54,7 @@ function Dropdown() {
 
   const dropdownItemList = dropDownItems.map((v) => {
     return (
-      <div
-        className='dropdown-item'
-        key={v.number}
-        onClick={() => handleClickItem(v.number)}
-        // 일단 해놓음
-        role='presentation'
-      >
+      <div className={styles.dropdownItem} key={v.number} onClick={() => handleClickItem(v.number)} role='presentation'>
         {v.item}
       </div>
     )
@@ -66,11 +62,13 @@ function Dropdown() {
 
   return (
     <Container title='DROPDOWN'>
-      <div className='dropdown-container'>
-        <DropdownBtn item={item} open={open} setOpen={setOpen} setSearchText={setSearchText} />
-        {open && <DropdownItems searchText={searchText} onChangeText={onChangeText} list={dropdownItemList} />}
-      </div>
-      <div className='blank-container'>빈공간</div>
+      <>
+        <div className={styles.dropdownContainer}>
+          <DropdownBtn item={item} open={open} setOpen={setOpen} setSearchText={setSearchText} />
+          {open && <DropdownItems searchText={searchText} onChangeText={onChangeText} list={dropdownItemList} />}
+        </div>
+        <div className={styles.blankContainer}>빈공간</div>
+      </>
     </Container>
   )
 }
@@ -82,28 +80,36 @@ function DropdownBtn({ item, open, setOpen, setSearchText }) {
   }
 
   return (
-    <div
-      className='dropdown-btn'
-      onClick={handleDropdown}
-      // 일단 해놓음
-      role='presentation'
-    >
-      <div className='dropdown-text'>{item}</div>
-      <div className='dropdown-arrow'>▼</div>
+    <div className={styles.dropdownBtn} onClick={handleDropdown} role='presentation'>
+      <div className={styles.dropdownText}>{item}</div>
+      <div className={styles.dropdownArrow}>▼</div>
     </div>
   )
 }
 
+DropdownBtn.propTypes = {
+  item: PropTypes.string,
+  open: PropTypes.bool,
+  setOpen: PropTypes.func,
+  setSearchText: PropTypes.func,
+}
+
 function DropdownItems({ searchText, onChangeText, list }) {
   return (
-    <div className='dropdown-items-container'>
-      <div className='dropdown-search'>
-        <img src={searchIcon} className='dropdown-search-icon' alt='search_icon' />
-        <input placeholder='Search' className='dropdown-search-input' value={searchText} onChange={onChangeText} />
+    <div className={styles.dropdownItemsContainer}>
+      <div className={styles.dropdownSearch}>
+        <img src={searchIcon} className={styles.dropdownSearchIcon} alt='search_icon' />
+        <input placeholder='Search' className={styles.dropdownSearchInput} value={searchText} onChange={onChangeText} />
       </div>
       {list}
     </div>
   )
+}
+
+DropdownItems.propTypes = {
+  searchText: PropTypes.string,
+  onChangeText: PropTypes.func,
+  list: PropTypes.arrayOf(PropTypes.element),
 }
 
 export default Dropdown

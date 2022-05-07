@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-import './Input.css'
+import styles from './Input.module.scss'
 import Container from '../common/Container'
 import validCheckBlack from '../../asset/check_black.png'
 import validCheckColor from '../../asset/check_color.png'
@@ -8,7 +8,7 @@ import pwViewIcon from '../../asset/pw_view.png'
 import pwHiddenIcon from '../../asset/pw_hidden.png'
 
 const regex = {
-  id: /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+  id: /^[a-zA-Z0-9+-\\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
 }
 
 const getValid = (text, type) => {
@@ -18,7 +18,7 @@ const getValid = (text, type) => {
 function Input() {
   return (
     <Container title='INPUT'>
-      <section className='input-container'>
+      <section className={styles.inputContainer}>
         <InputID />
         <InputPW />
       </section>
@@ -31,6 +31,8 @@ function InputID() {
 
   const [isValidID, setValidID] = useState(false)
   const [nowIsValidID, setNowValidID] = useState(true)
+
+  const iconSrc = isValidID ? validCheckColor : validCheckBlack
 
   useEffect(() => {
     setValidID(getValid(ID, 'id'))
@@ -53,19 +55,19 @@ function InputID() {
   }
 
   return (
-    <section className='input-box'>
-      <div className='input-title'>E-mail</div>
-      <div className='id-input-box'>
+    <section className={styles.inputBox}>
+      <div className={styles.inputTitle}>E-mail</div>
+      <div className={styles.idInputBox}>
         <input
-          className='input'
+          className={styles.input}
           placeholder='E-mail'
           value={ID}
           onChange={onChangeID}
           onBlur={() => handleBlur(isValidID)}
         />
-        <img src={isValidID ? validCheckColor : validCheckBlack} className='input-icon' alt='check' />
+        <img src={iconSrc} className={styles.idInputIcon} alt='check' />
       </div>
-      {ID && !nowIsValidID && <div className='err-messege'>Invalid e-mail address</div>}
+      {ID && !nowIsValidID && <div className={styles.errMessege}>Invalid e-mail address</div>}
     </section>
   )
 }
@@ -84,16 +86,21 @@ function InputPW() {
   }
 
   return (
-    <section className='input-box'>
-      <div className='input-title'>Password</div>
-      <div className='pw-input-box'>
-        <input className='input' placeholder='Password' type={!pwView && 'password'} value={PW} onChange={onChangePW} />
+    <section className={styles.inputBox}>
+      <div className={styles.inputTitle}>Password</div>
+      <div className={styles.pwInputBox}>
+        <input
+          className={styles.input}
+          placeholder='Password'
+          type={!pwView && 'password'}
+          value={PW}
+          onChange={onChangePW}
+        />
         <img
           src={pwView ? pwViewIcon : pwHiddenIcon}
-          className='password-icon'
+          className={styles.passwordIcon}
           alt='check'
           onClick={handlePwIcon}
-          // 일단 해놓음
           role='presentation'
         />
       </div>
